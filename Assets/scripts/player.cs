@@ -4,28 +4,44 @@ using UnityEngine;
 
 public class player : MonoBehaviour {
 
-	public string toPrintclass = "Damn World";
 	public float speed = 5;
+	public float health = 100;
+	public float invulnerableDuration = 1;
+
+	private float invulnerableEndTime = 0;
 
 	// Use this for initialization
 	void Start () {
-		string toPrint = "Bye Bye variable";
-		Debug.Log (toPrintclass);
-		string return1 = TestFunction ("Test mesage variable", 1);
-		string return2 = TestFunction ("Test mesage variable", 2);
-		Debug.Log ("returned1 = " + return1);
-		Debug.Log ("returned2 = " + return2);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		Rigidbody2D ourRigidbody = GetComponent<Rigidbody2D> ();
 		ourRigidbody.velocity = Vector2.right*speed;
-	}
-		
-	string TestFunction(string message, int count) {
-		Debug.Log (message + " " + count);
 
-		return "returned string";
-	}
+
+		SpriteRenderer ourSprite = GetComponent<SpriteRenderer> ();
+		ourSprite.enabled = false
+}
+
+	public void Damage(float damageToDeal)
+	{
+		if (Time.time >= invulnerableEndTime) {
+			health = health - damageToDeal;
+
+			//TODO: Handle Death
+
+			//Set us as invlnerable for a set duration
+			invulnerableEndTime = Time.time + invulnerableDuration;
+
+
+
+			Debug.Log ("Damage was dealt");
+			Debug.Log ("damageToDeal = " + damageToDeal);
+			Debug.Log ("health = " + health);
+		}
+	}//end Damage()
+		
+
+
 }
