@@ -6,7 +6,7 @@ public class player : MonoBehaviour {
 
 	public float speed = 5;
 	public float jumpSpeed = 10;
-	public bool hasDoubleJumped = false;
+	private bool hasDoubleJumped = false;
 	public float health = 100;
 	public float invulnerableDuration = 1;
 	public float blinkDuration = 0.25f;
