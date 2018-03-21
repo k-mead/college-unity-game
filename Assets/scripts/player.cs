@@ -6,6 +6,7 @@ public class player : MonoBehaviour {
 
 	public float speed = 5;
 	public float jumpSpeed = 10;
+	public bool hasDoubleJumped = false;
 	public float health = 100;
 	public float invulnerableDuration = 1;
 	public float blinkDuration = 0.25f;
@@ -37,12 +38,24 @@ public class player : MonoBehaviour {
 		//ask collider if touching layer
 		bool isTouchingGround = ourCollider.IsTouchingLayers(groundLayer);
 
+		if (isTouchingGround == true) {
+			hasDoubleJumped = false;
+		}
+		bool allowedToJump = isTouchingGround;
+
+		if (isTouchingGround == false && hasDoubleJumped == false) {
+			allowedToJump = true;
+		}
 		//jump logic
 		bool jumpPressed = Input.GetButtonDown("Jump");
+
 
 		//
 		if (jumpPressed == true && isTouchingGround == true) {
 			velocity.y = jumpSpeed;
+
+			if (isTouchingGround == false)
+				hasDoubleJumped = true;
 		}
 
 		//putting this velocity back into physics system
