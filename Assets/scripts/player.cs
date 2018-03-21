@@ -36,6 +36,9 @@ public class player : MonoBehaviour {
 
 		SpriteRenderer ourSprite = GetComponent<SpriteRenderer> ();
 
+		//flip the sprite on x-axis only if velocity < 0 
+		ourSprite.flipX = velocity.x < 0;
+
 		if (Time.time >= invulnerableEndTime) {
 
 			ourSprite.enabled = true;
