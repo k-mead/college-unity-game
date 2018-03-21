@@ -5,6 +5,7 @@ using UnityEngine;
 public class player : MonoBehaviour {
 
 	public float speed = 5;
+	public float jumpSpeed = 10;
 	public float health = 100;
 	public float invulnerableDuration = 1;
 	public float blinkDuration = 0.25f;
@@ -27,6 +28,13 @@ public class player : MonoBehaviour {
 
 		//set velocity based on input and speed value
 		velocity.x = horizontal * speed;
+
+		//jump logic
+		bool jumpPressed = Input.GetButtonDown("Jump");
+
+		if (jumpPressed == true) {
+			velocity.y = jumpSpeed;
+		}
 
 		//putting this velocity back into physics system
 		ourRigidbody.velocity = velocity;
@@ -52,22 +60,22 @@ public class player : MonoBehaviour {
 		}
 		//Mouse Test
 		//check if mouse buton pressed
-		if (Input.GetMouseButtonDown(0) == true) {
-			Debug.Log ("Mouse left Button Just Pressed");
-		}
-
-		if (Input.GetMouseButton(0) == true) {
-			Debug.Log ("Mouse left Button Held");
-		}
-
-		if (Input.GetMouseButtonUp(0) == true) {
-			Debug.Log ("Mouse left Button Just Pressed");
-		}
-
-		if (Input.GetMouseButtonDown(1) == true) {
-			Debug.Log ("Mouse right Button Just Pressed");
-		}
-		Debug.Log ("Mouse Position = " + Input.mousePosition);
+//		if (Input.GetMouseButtonDown(0) == true) {
+//			Debug.Log ("Mouse left Button Just Pressed");
+//		}
+//
+//		if (Input.GetMouseButton(0) == true) {
+//			Debug.Log ("Mouse left Button Held");
+//		}
+//
+//		if (Input.GetMouseButtonUp(0) == true) {
+//			Debug.Log ("Mouse left Button Just Pressed");
+//		}
+//
+//		if (Input.GetMouseButtonDown(1) == true) {
+//			Debug.Log ("Mouse right Button Just Pressed");
+//		}
+//		Debug.Log ("Mouse Position = " + Input.mousePosition);
 		//ourSprite.enabled = false
 }
 
