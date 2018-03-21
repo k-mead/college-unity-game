@@ -29,10 +29,19 @@ public class player : MonoBehaviour {
 		//set velocity based on input and speed value
 		velocity.x = horizontal * speed;
 
+		//Determine if touching ground
+		Collider2D ourCollider = GetComponent<Collider2D>();
+
+		LayerMask groundLayer = LayerMask.GetMask ("Ground");
+
+		//ask collider if touching layer
+		bool isTouchingGround = ourCollider.IsTouchingLayers(groundLayer);
+
 		//jump logic
 		bool jumpPressed = Input.GetButtonDown("Jump");
 
-		if (jumpPressed == true) {
+		//
+		if (jumpPressed == true && isTouchingGround == true) {
 			velocity.y = jumpSpeed;
 		}
 
