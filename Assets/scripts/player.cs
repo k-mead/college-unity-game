@@ -50,6 +50,24 @@ public class player : MonoBehaviour {
 				blinkEndTime = Time.time + blinkDuration;
 			}
 		}
+		//Mouse Test
+		//check if mouse buton pressed
+		if (Input.GetMouseButtonDown(0) == true) {
+			Debug.Log ("Mouse left Button Just Pressed");
+		}
+
+		if (Input.GetMouseButton(0) == true) {
+			Debug.Log ("Mouse left Button Held");
+		}
+
+		if (Input.GetMouseButtonUp(0) == true) {
+			Debug.Log ("Mouse left Button Just Pressed");
+		}
+
+		if (Input.GetMouseButtonDown(1) == true) {
+			Debug.Log ("Mouse right Button Just Pressed");
+		}
+		Debug.Log ("Mouse Position = " + Input.mousePosition);
 		//ourSprite.enabled = false
 }
 
