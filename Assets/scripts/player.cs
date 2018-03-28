@@ -6,12 +6,14 @@ public class player : MonoBehaviour {
 
 	public float speed = 5;
 	public float jumpSpeed = 10;
-	private bool hasDoubleJumped = false;
+	//private bool hasDoubleJumped = false;
 	public float health = 100;
 	public float invulnerableDuration = 1;
 	public float blinkDuration = 0.25f;
+	public int allowedAirJumps = 0;
 	private float invulnerableEndTime = 0;
 	public float blinkEndTime = 0;
+	private int numAirJumps = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -39,11 +41,12 @@ public class player : MonoBehaviour {
 		bool isTouchingGround = ourCollider.IsTouchingLayers(groundLayer);
 
 		if (isTouchingGround == true) {
-			hasDoubleJumped = false;
+			//hasDoubleJumped = false;
+			numAirJumps = 0;
 		}
 		bool allowedToJump = isTouchingGround;
 
-		if (isTouchingGround == false && hasDoubleJumped == false) {
+		if (isTouchingGround == false && numAirJumps < allowedAirJumps) {
 			allowedToJump = true;
 		}
 		//jump logic
@@ -55,7 +58,8 @@ public class player : MonoBehaviour {
 			velocity.y = jumpSpeed;
 
 			if (isTouchingGround == false)
-				hasDoubleJumped = true;
+				numAirJumps = numAirJumps + 1;
+			
 		}
 
 		//putting this velocity back into physics system
