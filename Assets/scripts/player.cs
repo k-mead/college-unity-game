@@ -49,6 +49,9 @@ public class player : MonoBehaviour {
 		//ask collider if touching layer
 		bool isTouchingGround = ourCollider.IsTouchingLayers(groundLayer);
 
+		//set touchingground on animator
+		ourAnimator.SetBool("touchingGround", isTouchingGround);
+
 		if (isTouchingGround == true) {
 			//hasDoubleJumped = false;
 			numAirJumps = 0;
